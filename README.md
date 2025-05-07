@@ -52,7 +52,7 @@ docker run -p 3000:3000 --env-file .env island-tax-return-backend:latest
 ## GraphQL API
 ### GraphQL Playground
 - **GET /graphql**  
-  This endpoint provides a GraphQL playground for testing queries and mutations. You can use it to explore the API and test different operations. For this special project, the playground is also available in the production environment on this URL: [https://d67da8fe8dfa73b.qaack.1xinter.net/graphql](https://d67da8fe8dfa73b.qaack.1xinter.net/graphql).
+  This endpoint provides a GraphQL playground for testing queries and mutations. You can use it to explore the API and test different operations. For this special project, the playground is also available in the production environment on this URL: [https://7d5113d3dba5034.qaack.1xinter.net/graphql](https://7d5113d3dba5034.qaack.1xinter.net/graphql).
 - **GraphQL Schema**  
   The API uses GraphQL to define the schema for users, tax returns, incomes, assets, and liabilities. The schema is defined in the `schema.graphql` file. You can use this file to understand the structure of the data and the relationships between different entities.
 - **GraphQL Queries and Mutations**  

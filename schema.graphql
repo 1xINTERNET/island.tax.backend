@@ -1,0 +1,203 @@
+# Indicates exactly one field must be supplied and this field must not be `null`.
+directive @oneOf on INPUT_OBJECT
+
+type IncomeType {
+  id: ID!
+  taxReturnId: Float!
+  source: String!
+  amount: Float!
+  type: String!
+  subtype: String
+}
+
+type AssetType {
+  id: ID!
+  taxReturnId: Float!
+  value: Float!
+  type: String!
+  assetId: String
+  address: String
+}
+
+type LiabilityType {
+  id: ID!
+  taxReturnId: Float!
+  type: String!
+  subtype: String
+  propertyAddress: String
+  lenderName: String
+  lenderSsn: String
+  loanNumber: String
+  loanStartDate: String
+  loanTermYears: Float
+  annualPayment: Float
+  principalRepayment: Float
+  interestPaid: Float!
+  remainingBalance: Float!
+  details: String
+  accountNumber: String
+  issuer: String
+}
+
+type TaxReturnType {
+  id: ID!
+  userId: Float!
+  year: Float!
+  status: String!
+  incomes: [IncomeType!]
+  assets: [AssetType!]
+  liabilities: [LiabilityType!]
+}
+
+type UserType {
+  id: ID!
+  firstName: String!
+  lastName: String!
+  ssn: String!
+  streetAndHouseNumber: String
+  postalCode: String
+  city: String
+  email: String!
+  phone: String!
+  taxReturns: [TaxReturnType!]
+}
+
+type Query {
+  users: [UserType!]!
+  user(id: Float!): UserType!
+  incomes: [IncomeType!]!
+  income(id: Float!): IncomeType!
+  assets: [AssetType!]!
+  asset(id: Float!): AssetType!
+  liabilities: [LiabilityType!]!
+  liability(id: Float!): LiabilityType!
+  taxReturns: [TaxReturnType!]!
+  taxReturn(id: Float!): TaxReturnType!
+}
+
+type Mutation {
+  createUser(user: CreateUserInput!): UserType!
+  updateUser(user: UpdateUserInput!): UserType!
+  deleteUser(id: Int!): Boolean!
+  createIncome(income: CreateIncomeInput!): IncomeType!
+  updateIncome(income: UpdateIncomeInput!): IncomeType!
+  deleteIncome(id: Int!): Boolean!
+  createAsset(asset: CreateAssetInput!): AssetType!
+  updateAsset(asset: UpdateAssetInput!): AssetType!
+  deleteAsset(id: Int!): Boolean!
+  createLiability(liability: CreateLiabilityInput!): LiabilityType!
+  updateLiability(liability: UpdateLiabilityInput!): LiabilityType!
+  deleteLiability(id: Int!): Boolean!
+  createTaxReturn(taxReturn: CreateTaxReturnInput!): TaxReturnType!
+  updateTaxReturn(taxReturn: UpdateTaxReturnInput!): TaxReturnType!
+  deleteTaxReturn(id: Int!): Boolean!
+}
+
+input CreateUserInput {
+  firstName: String!
+  lastName: String!
+  ssn: String!
+  streetAndHouseNumber: String
+  postalCode: String
+  city: String
+  email: String!
+  phone: String!
+  taxReturns: [CreateTaxReturnInput!]
+}
+
+input CreateTaxReturnInput {
+  userId: Float!
+  year: Float!
+  status: String!
+  assets: [CreateAssetInput!]
+  incomes: [CreateIncomeInput!]
+  liabilities: [CreateLiabilityInput!]
+}
+
+input CreateAssetInput {
+  taxReturnId: Float!
+  value: Float!
+  type: String!
+  assetId: String
+  address: String
+}
+
+input CreateIncomeInput {
+  taxReturnId: Float!
+  source: String!
+  amount: Float!
+  type: String!
+  subtype: String
+}
+
+input CreateLiabilityInput {
+  taxReturnId: Float!
+  type: String!
+  subtype: String
+  propertyAddress: String
+  lenderName: String
+  lenderSsn: String
+  loanNumber: String
+  loanStartDate: String
+  loanTermYears: Float
+  annualPayment: Float
+  principalRepayment: Float
+  interestPaid: Float!
+  remainingBalance: Float!
+  details: String
+  accountNumber: String
+  issuer: String
+}
+
+input UpdateUserInput {
+  id: Int!
+  firstName: String
+  lastName: String
+  streetAndHouseNumber: String
+  postalCode: String
+  city: String
+  email: String
+  phone: String
+}
+
+input UpdateIncomeInput {
+  id: Int!
+  source: String
+  amount: Float
+  type: String
+  subtype: String
+}
+
+input UpdateAssetInput {
+  id: Int!
+  value: Float
+  type: String
+  assetId: String
+  address: String
+}
+
+input UpdateLiabilityInput {
+  id: Int!
+  type: String
+  subtype: String
+  propertyAddress: String
+  lenderName: String
+  lenderSsn: String
+  loanNumber: String
+  loanStartDate: String
+  loanTermYears: Float
+  annualPayment: Float
+  principalRepayment: Float
+  interestPaid: Float
+  remainingBalance: Float
+  details: String
+  accountNumber: String
+  issuer: String
+}
+
+input UpdateTaxReturnInput {
+  id: Int!
+  userId: Float
+  year: Float
+  status: String
+}

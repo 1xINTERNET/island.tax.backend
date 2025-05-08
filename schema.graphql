@@ -65,6 +65,7 @@ type UserType {
 type Query {
   users: [UserType!]!
   user(id: Float!): UserType!
+  userByPhone(phone: String!): UserType!
   incomes: [IncomeType!]!
   income(id: Float!): IncomeType!
   assets: [AssetType!]!

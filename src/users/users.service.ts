@@ -45,6 +45,12 @@ export class UsersService {
     return user;
   }
 
+  async findByPhone(phone: string): Promise<User> {
+    const user = await this.userModel.findOne({ where: { phone } });
+    if (!user) throw new NotFoundException('User not found');
+    return user;
+  }
+
   async update(id: number, updateUserDto: UpdateUserDto): Promise<User> {
     const user = await this.findOne(id);
     return user.update(updateUserDto);

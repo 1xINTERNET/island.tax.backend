@@ -32,6 +32,12 @@ export class UserResolver {
     return user.get({ plain: true });
   }
 
+  @Query(() => UserType)
+  async userByPhone(@Args('phone') phone: string) {
+    const user = await this.usersService.findByPhone(phone);
+    return user.get({ plain: true });
+  }
+
   @Mutation(() => UserType)
   async createUser(@Args('user') user: CreateUserInput) {
     const newUser = await this.usersService.create(user);
